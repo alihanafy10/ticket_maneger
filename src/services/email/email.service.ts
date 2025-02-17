@@ -2,7 +2,7 @@ import { Injectable } from "@nestjs/common";
 import * as nodemailer from 'nodemailer';
 import { JwtService } from '@nestjs/jwt';
 
-import { emailHtml, emailOtpHtml } from "./email-html";
+import { emailHtml, emailOtpHtml, emailTicketHtml } from "./email-html";
 @Injectable()
 export class EmailService {
   constructor(private jwtService: JwtService) { }
@@ -53,6 +53,29 @@ export class EmailService {
       to: email, // list of receivers
       subject: 'Hello ✔', // Subject line
       html: emailOtpHtml(name,otp), // html body
+    });
+
+    console.log('Message sent: %s', info.messageId);
+    // Message sent: <d786aa62-4e0a-070a-47ed-0b0666549519@ethereal.email>
+  }
+  async sendEmailsTicket(
+    email:string,name:string,title:string,description:string,ticketStatus:string,ticketNum:string,ticketType?:string|null
+  ) {
+    //create transporter
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env.EMAIL_SENDER,
+        pass: process.env.EMAIL_PASSWORD,
+      },
+    });
+    
+
+    const info = await transporter.sendMail({
+      from: `"3mk Ali Kato 👻" <${process.env.EMAIL_SENDER}>`, // sender address
+      to: email, // list of receivers
+      subject: 'Hello ✔', // Subject line
+      html: emailTicketHtml(name,title,description,ticketStatus,ticketNum,ticketType), // html body
     });
 
     console.log('Message sent: %s', info.messageId);

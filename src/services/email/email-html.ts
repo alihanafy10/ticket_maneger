@@ -192,3 +192,60 @@ export const emailOtpHtml = (name:string,otp:string) => {
     
 </div>`;
 }
+
+export const  emailTicketHtml=(name:string,title:string,description:string,ticketStatus:string,ticketNum:string,ticketType?:any)=>{
+	return`
+	 <div style="overflow: hidden; line-height: 2">
+      <div
+        style="
+          margin: 50px auto;
+          width: 70%;
+
+          padding: 10px 20px;
+               
+               border-radius: 50px;
+background: #e0e0e0;
+box-shadow:  20px 20px 60px #bebebe,
+             -20px -20px 60px #ffffff;
+        "
+      >
+        <h2 style="margin:  auto; width: 100%; text-align: center;color:red">
+          ${ticketNum}
+        </h2>
+        <div style="text-align: center">
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKUB9ObFxteS-q8gYATYbfvzxDN-VthEsZvA4g8WUO-yiw-XaRGcixCUxOtBuW3eXjGyE&usqp=CAU"
+            alt=""
+            style="
+              width: 150px;
+              height: 100px;
+              object-fit: contain;
+              mix-blend-mode: multiply;
+            "
+          />
+        </div>
+        <p style="font-size: 1.3rem; font-weight: 600; margin-top: 0;text-align:center">Hi <span style="color:#09c">${name}</span></p>
+
+        <div style="padding: 0 20px;">
+          <p style="text-align:center; font-weight: 600;">
+            Thank you for letting us know about your problem. We will work on it to solve it as soon as possible.
+          </p>
+          <h2
+            style="
+              background-color: #00466a;
+              margin: 0 auto;
+              width: max-content;
+              padding: 0 0.625rem;
+              clear: #fff;
+              border-radius: 0.25rem;
+            "
+          ></h2>
+          <p style="margin: 0 5px">title: ${title}</p>
+          <p style="margin: 0 5px">description: ${description}</p>
+          <p style="margin: 0 5px">status: <span style="color:#09c">${ticketStatus}</span> </p>
+		  ${ticketType ? `<p style='font-size: 0.9em'>${ticketType}</p>` : ''}
+
+        </div>
+      </div>
+    </div>`
+}
