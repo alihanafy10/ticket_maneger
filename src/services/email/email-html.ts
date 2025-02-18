@@ -243,7 +243,7 @@ box-shadow:  20px 20px 60px #bebebe,
           <p style="margin: 0 5px">title: ${title}</p>
           <p style="margin: 0 5px">description: ${description}</p>
           <p style="margin: 0 5px">status: <span style="color:#09c">${ticketStatus}</span> </p>
-		  ${ticketType ? `<p style='font-size: 0.9em'>${ticketType}</p>` : ''}
+		  ${ticketType!="none" ? `<p style='font-size: 0.9em'>Type: <span style="color:#09c">${ticketType}</span></p>` : ''}
 
         </div>
       </div>

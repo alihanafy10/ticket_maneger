@@ -21,6 +21,7 @@ export enum TicketStatus {
 export enum TicketType {
     TECHNICAL='technical',
     DEVELOPER = 'developer',
-    CUSTOMER_SERVICE= 'customer_service'
+    CUSTOMER_SERVICE= 'customer_service',
+    NONE='none'
 }
 

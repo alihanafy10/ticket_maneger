@@ -33,7 +33,7 @@ export class Ticket {
     type: String,
     trim: true,
     enum:Object.values(TicketType),
-    default:null
+    default:TicketType.NONE
   })
   ticketType: string;
 

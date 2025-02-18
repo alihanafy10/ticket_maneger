@@ -3,6 +3,7 @@ import * as nodemailer from 'nodemailer';
 import { JwtService } from '@nestjs/jwt';
 
 import { emailHtml, emailOtpHtml, emailTicketHtml } from "./email-html";
+import { TicketStatus, TicketType } from "../../common/shared";
 @Injectable()
 export class EmailService {
   constructor(private jwtService: JwtService) { }
@@ -59,7 +60,7 @@ export class EmailService {
     // Message sent: <d786aa62-4e0a-070a-47ed-0b0666549519@ethereal.email>
   }
   async sendEmailsTicket(
-    email:string,name:string,title:string,description:string,ticketStatus:string,ticketNum:string,ticketType?:string|null
+    email:string,name:string,title:string,description:string,ticketStatus:string|TicketStatus,ticketNum:string,ticketType?:TicketType|string
   ) {
     //create transporter
     const transporter = nodemailer.createTransport({
