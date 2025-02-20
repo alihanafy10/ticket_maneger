@@ -1,3 +1,5 @@
+import { TicketType } from "../../common/shared";
+
 export const emailHtml = (name:string, token:string, req:any):string => {
   return `
     <!-- © 2018 Shift Technologies. All rights reserved. -->
@@ -193,7 +195,7 @@ export const emailOtpHtml = (name:string,otp:string) => {
 </div>`;
 }
 
-export const  emailTicketHtml=(name:string,title:string,description:string,ticketStatus:string,ticketNum:string,ticketType?:any)=>{
+export const  emailTicketHtml=(name:string,title:string,description:string,ticketStatus:string,ticketNum:string,ticketType:TicketType,result?:string)=>{
 	return`
 	 <div style="overflow: hidden; line-height: 2">
       <div
@@ -228,7 +230,7 @@ box-shadow:  20px 20px 60px #bebebe,
 
         <div style="padding: 0 20px;">
           <p style="text-align:center; font-weight: 600;">
-            Thank you for letting us know about your problem. We will work on it to solve it as soon as possible.
+           ${(result?result: "Thank you for letting us know about your problem. We will work on it to solve it as soon as possible.")}
           </p>
           <h2
             style="
@@ -243,7 +245,7 @@ box-shadow:  20px 20px 60px #bebebe,
           <p style="margin: 0 5px">title: ${title}</p>
           <p style="margin: 0 5px">description: ${description}</p>
           <p style="margin: 0 5px">status: <span style="color:#09c">${ticketStatus}</span> </p>
-		  ${ticketType!="none" ? `<p style='font-size: 0.9em'>Type: <span style="color:#09c">${ticketType}</span></p>` : ''}
+		  ${ticketType!=TicketType.NONE ? `<p style='font-size: 0.9em'>Type: <span style="color:#09c">${ticketType}</span></p>` : ''}
 
         </div>
       </div>

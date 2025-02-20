@@ -38,6 +38,14 @@ export class Ticket {
   ticketType: string;
 
   @Prop({
+    type: String,
+    default: null,
+    trim: true,
+    maxlength: 500,
+  })
+ result:string;
+
+  @Prop({
     type:String,
     unique: true,
   })
@@ -52,7 +60,30 @@ export class Ticket {
 
 }
 const ticketSchema = SchemaFactory.createForClass(Ticket)
-
-
-
 export const TicketModel=MongooseModule.forFeature([{name:Ticket.name,schema:ticketSchema}])
+
+
+
+
+@Schema({timestamps: true})
+export class TicketHistory{
+  @Prop({
+    type:mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  })
+  changedBy: mongoose.Schema.Types.ObjectId;
+  @Prop({
+    type:mongoose.Schema.Types.ObjectId,
+    ref: "Ticket",
+    required: true,
+  })
+  ticketId: mongoose.Schema.Types.ObjectId;
+  @Prop({
+    type: Object,
+    required: true,
+  })
+  changes: any;
+}
+const ticketHistorySchema = SchemaFactory.createForClass(TicketHistory)
+export const TicketHistoryModel=MongooseModule.forFeature([{name:TicketHistory.name,schema:ticketHistorySchema}])

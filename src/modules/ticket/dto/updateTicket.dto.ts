@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import { generalRules, TicketType } from '../../../common/shared';
+import { generalRules, TicketStatus, TicketType } from '../../../common/shared';
 
 //update ticket type query
 export const updateTicketTypeQueryDto = z
@@ -19,3 +19,17 @@ export const updateTicketTypeParamDto = z
     _id:generalRules.IdesRole,
   })
   .strict();
+
+
+  //update ticket query
+export const updateTicketQueryDto = z
+.object({
+  ticketStatus: z.enum([
+      TicketStatus.IN_PROGRESS,
+      TicketStatus.CLOSED,
+    ]).optional(),
+    result:z.string().max(500).optional()
+})
+.strict();
+
+export const updateTicketParamDto=updateTicketTypeParamDto

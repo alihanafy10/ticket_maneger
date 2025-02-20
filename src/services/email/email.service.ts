@@ -60,7 +60,7 @@ export class EmailService {
     // Message sent: <d786aa62-4e0a-070a-47ed-0b0666549519@ethereal.email>
   }
   async sendEmailsTicket(
-    email:string,name:string,title:string,description:string,ticketStatus:string|TicketStatus,ticketNum:string,ticketType?:TicketType|string
+    email:string,name:string,title:string,description:string,ticketStatus:string|TicketStatus,ticketNum:string,ticketType:TicketType,result?:string
   ) {
     //create transporter
     const transporter = nodemailer.createTransport({
@@ -76,7 +76,7 @@ export class EmailService {
       from: `"3mk Ali Kato 👻" <${process.env.EMAIL_SENDER}>`, // sender address
       to: email, // list of receivers
       subject: 'Hello ✔', // Subject line
-      html: emailTicketHtml(name,title,description,ticketStatus,ticketNum,ticketType), // html body
+      html: emailTicketHtml(name,title,description,ticketStatus,ticketNum,ticketType,result), // html body
     });
 
     console.log('Message sent: %s', info.messageId);
